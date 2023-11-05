@@ -1,13 +1,14 @@
 import gc
 import json
-from pathlib import Path
 import random
+import sys
 import time
+import tracemalloc
+from pathlib import Path
 from typing import Callable, Literal, NoReturn, ParamSpec, Tuple, TypeVar
+
 import heaps
 import shells
-import tracemalloc
-import sys
 
 # We do manual garbage collection, so that the memory calculation isn't erroneous
 gc.disable()
