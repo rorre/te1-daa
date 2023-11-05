@@ -27,7 +27,10 @@ def print_result():
                 f'{round(data["heapsort"]["time"] * 1000)}ms',
                 f'{round(data["heapsort"]["memory"] / 1024, 3)}KiB',
             )
-            print()
+            print(
+                "Shellsort is",
+                f'{round( data["shellsort"]["time"] / data["heapsort"]["time"] )}x slower',
+            )
             print("------------------")
 
 
