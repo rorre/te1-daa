@@ -19,12 +19,12 @@ def print_result():
 
             print(
                 "Shellsort",
-                f'{round(data["shellsort"]["time"], 3)}s',
+                f'{round(data["shellsort"]["time"] * 1000)}ms',
                 f'{round(data["shellsort"]["memory"] / 1024, 3)}KiB',
             )
             print(
                 "Heapsort",
-                f'{round(data["heapsort"]["time"], 3)}s',
+                f'{round(data["heapsort"]["time"] * 1000)}ms',
                 f'{round(data["heapsort"]["memory"] / 1024, 3)}KiB',
             )
             print()
