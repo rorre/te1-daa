@@ -10,7 +10,9 @@
 - `run.sh`: Melakukan test dengan dataset yang sudah ada
 - `init.sh`: Melakukan generate dataset dan test
 
-> [!WARNING] > `run.sh` dan `init.sh` akan melakukan semua test **secara paralel**. Pastikan Anda menutup aplikasi-aplikasi
+> [!WARNING]
+>
+> `run.sh` dan `init.sh` akan melakukan semua test **secara paralel**. Pastikan Anda menutup aplikasi-aplikasi
 > untuk memastikan CPU Anda tidak _overloaded_.
 
 ### Struktur direktori dataset:
