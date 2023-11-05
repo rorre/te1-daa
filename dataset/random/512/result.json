@@ -1,0 +1,1 @@
+{"type": "random", "size": 512, "heapsort": {"memory": 4205, "time": 0.003987550735473633}, "shellsort": {"memory": 2702, "time": 0.25699734687805176}}
