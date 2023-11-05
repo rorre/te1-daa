@@ -90,9 +90,9 @@ def test(arr: list[int], data_type: str, data_size: int):
 
 def generate_dataset(size: int, data_type: DataType):
     """Generates dataset based on size and data type"""
-    arr = list(range(size))
-    if data_type == "random":
-        random.shuffle(arr)
+    arr = [random.randint(-1 * sys.maxsize, sys.maxsize) for _ in range(size)]
+    if data_type == "sorted":
+        arr = sorted(arr)
     elif data_type == "reversed":
         arr = list(reversed(arr))
     return arr
