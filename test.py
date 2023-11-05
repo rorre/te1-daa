@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import random
 import time
-from typing import Any, Callable, Literal, NoReturn, ParamSpec, Tuple
+from typing import Callable, Literal, NoReturn, ParamSpec, Tuple, TypeVar
 import heaps
 import shells
 import tracemalloc
@@ -13,6 +13,7 @@ import sys
 gc.disable()
 
 DataType = Literal["sorted", "random", "reversed"]
+T = TypeVar("T")
 P = ParamSpec("P")
 TYPES = ("sorted", "random", "reversed")
 SIZES = (2**9, 2**13, 2**16)
@@ -21,7 +22,7 @@ SIZES = (2**9, 2**13, 2**16)
 tracemalloc.start()
 
 
-def measure_metric(f: Callable[P, Any]) -> Callable[P, Tuple[int, float]]:
+def measure_metric(f: Callable[P, T]) -> Callable[P, Tuple[int, float, T]]:
     """Decorator to wrap given function to measure the time and memory usage"""
 
     def wrapped(*args: P.args, **kwargs: P.kwargs):
@@ -30,14 +31,18 @@ def measure_metric(f: Callable[P, Any]) -> Callable[P, Tuple[int, float]]:
         t_start = time.time()
         first = tracemalloc.take_snapshot()
 
-        f(*args, **kwargs)
+        result = f(*args, **kwargs)
 
         second = tracemalloc.take_snapshot()
         t_end = time.time()
 
         # size_diff is in bytes, so we have to divide by 1024 later
         # t_end - t_start is in seconds
-        return second.compare_to(first, "filename")[0].size_diff, t_end - t_start
+        return (
+            second.compare_to(first, "filename")[0].size_diff,
+            t_end - t_start,
+            result,
+        )
 
     return wrapped
 
@@ -62,14 +67,14 @@ def test(arr: list[int], data_type: str, data_size: int):
         },
     }
     new_arr = arr.copy()
-    memory, t = heapsort(new_arr)
+    memory, t, _ = heapsort(new_arr)
     assert new_arr == sorted(arr)
 
     result["heapsort"]["memory"] = memory
     result["heapsort"]["time"] = t
 
     new_arr = arr.copy()
-    memory, t = randomized_shellsort(new_arr)
+    memory, t, _ = randomized_shellsort(new_arr)
     assert new_arr == sorted(arr)
 
     result["shellsort"]["memory"] = memory
