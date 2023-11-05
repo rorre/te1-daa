@@ -1,1 +1,1 @@
-{"type": "reversed", "size": 512, "heapsort": {"memory": 4205, "time": 0.004015684127807617}, "shellsort": {"memory": 2702, "time": 0.25699567794799805}}
+{"type": "reversed", "size": 512, "heapsort": {"memory": 4205, "time": 0.003998517990112305}, "shellsort": {"memory": 2702, "time": 0.28899717330932617}}
