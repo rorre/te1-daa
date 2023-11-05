@@ -94,7 +94,7 @@ def generate_dataset(size: int, data_type: DataType):
     if data_type == "sorted":
         arr = sorted(arr)
     elif data_type == "reversed":
-        arr = list(reversed(arr))
+        arr = list(reversed(sorted(arr)))
     return arr
 
 
